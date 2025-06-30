@@ -22,8 +22,10 @@ dependencies:
   printing: ^5.14.2
   local_auth: ^2.3.0 # face id
   url_launcher: ^6.3.1
-  # syncfusion
-  syncfusion_flutter_pdf: ^29.2.11
+  path_provider: ^2.1.5
+  syncfusion_flutter_pdfviewer: ^30.1.37
+  # pdf_render: ^1.4.12
+  # syncfusion_flutter_pdf: ^29.2.11
   # db
   sqflite: ^2.4.2
   path: ^1.9.1

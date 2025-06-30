@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:go_router/go_router.dart';
 
+import '../features/actions/screens/read_screen.dart';
 import '../features/home/screens/home_screen.dart';
 import '../features/onboard/screens/onboard_screen.dart';
 import '../features/settings/screens/faq_screen.dart';
@@ -20,6 +23,14 @@ final routerConfig = GoRouter(
     GoRoute(
       path: HomeScreen.routePath,
       builder: (context, state) => const HomeScreen(),
+    ),
+
+    // actions
+    GoRoute(
+      path: ReadScreen.routePath,
+      builder: (context, state) => ReadScreen(
+        file: state.extra as File,
+      ),
     ),
 
     // settings

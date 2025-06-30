@@ -6,10 +6,10 @@ final theme = ThemeData(
   useMaterial3: false,
   brightness: Brightness.light,
   fontFamily: AppFonts.w400,
-  textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Color(0xffE12426),
-    selectionColor: Color(0xffE12426),
-    selectionHandleColor: Color(0xffE12426),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: const Color(0xffE12426),
+    selectionColor: Color(0xffE12426).withValues(alpha: 0.5),
+    selectionHandleColor: const Color(0xffE12426),
   ),
 
   // OVERSCROLL
