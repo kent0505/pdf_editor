@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils.dart';
+import '../../actions/screens/actions_screen.dart';
+import '../../favourites/screens/favourites_screen.dart';
+import '../../files/screens/files_screen.dart';
 import '../../settings/screens/settings_screen.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/nav_bar.dart';
@@ -17,8 +20,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool showPaywall = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     HomeSettings() => 3,
                   },
                   children: const [
-                    Text('1'),
-                    Text('2'),
-                    Text('3'),
-                    Text('4'),
+                    ActionsScreen(),
+                    FilesScreen(),
+                    FavouritesScreen(),
                     SettingsScreen(),
                   ],
                 );

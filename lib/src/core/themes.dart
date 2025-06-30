@@ -23,7 +23,7 @@ final theme = ThemeData(
 
   // APPBAR
   appBarTheme: const AppBarTheme(
-    backgroundColor: Color(0xffF2F2F7),
+    backgroundColor: Colors.white,
     centerTitle: true,
     toolbarHeight: 64, // app bar size
     elevation: 0,

@@ -17,28 +17,28 @@ class SwitchButton extends StatelessWidget {
     return Center(
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 400),
-        height: 30,
-        width: 60,
+        height: 20,
+        width: 38,
         decoration: BoxDecoration(
-          color: isActive ? Colors.greenAccent : Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xff555555),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Button(
           onPressed: onPressed,
-          minSize: 30,
+          minSize: 20,
           child: Stack(
             children: [
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 400),
-                top: 4,
-                left: isActive ? 34 : 4,
+                top: 1,
+                left: isActive ? 19 : 1,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 400),
-                  height: 22,
-                  width: 22,
+                  height: 18,
+                  width: 18,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: isActive ? Colors.white : Colors.redAccent,
+                    color: isActive ? const Color(0xff30D158) : Colors.white,
                   ),
                 ),
               ),

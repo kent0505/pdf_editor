@@ -6,6 +6,8 @@ abstract final class AppFonts {
 }
 
 abstract final class Assets {
+  static const app1 = 'assets/app1.png';
+  static const app2 = 'assets/app2.png';
   static const back = 'assets/back.svg';
   static const onboard1 = 'assets/onboard1.png';
   static const onboard2 = 'assets/onboard2.png';
@@ -16,6 +18,17 @@ abstract final class Assets {
   static const onboard7 = 'assets/onboard7.svg';
   static const onboard8 = 'assets/onboard8.svg';
   static const reload = 'assets/reload.svg';
+  static const right = 'assets/right.svg';
+  static const settings1 = 'assets/settings1.svg';
+  static const settings2 = 'assets/settings2.svg';
+  static const settings3 = 'assets/settings3.svg';
+  static const settings4 = 'assets/settings4.svg';
+  static const settings5 = 'assets/settings5.svg';
+  static const settings6 = 'assets/settings6.svg';
+  static const settings7 = 'assets/settings7.svg';
+  static const settings8 = 'assets/settings8.svg';
+  static const settings9 = 'assets/settings9.svg';
+  static const settings10 = 'assets/settings10.svg';
   static const tab1 = 'assets/tab1.svg';
   static const tab2 = 'assets/tab2.svg';
   static const tab3 = 'assets/tab3.svg';
@@ -25,6 +38,7 @@ abstract final class Assets {
 
 abstract final class Keys {
   static const onboard = 'onboard';
+  static const faceID = 'faceID';
 }
 
 /* 

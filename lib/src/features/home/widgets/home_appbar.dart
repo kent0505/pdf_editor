@@ -12,10 +12,9 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<HomeBloc>().state;
-
     return AppBar(
       centerTitle: false,
+      backgroundColor: const Color(0xffF2F2F7),
       shape: const Border(
         bottom: BorderSide(color: Colors.transparent),
       ),
@@ -27,13 +26,22 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           top: 8,
           left: 16,
         ),
-        child: Text(
-          state is HomeSettings ? 'Settings' : 'XYZ',
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 28,
-            fontFamily: AppFonts.w700,
-          ),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return Text(
+              switch (state) {
+                HomeInitial() => 'PDF',
+                HomeFiles() => 'Files',
+                HomeFavourites() => 'Favourites',
+                HomeSettings() => 'Settings',
+              },
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 28,
+                fontFamily: AppFonts.w700,
+              ),
+            );
+          },
         ),
       ),
     );

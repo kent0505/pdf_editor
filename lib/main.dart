@@ -8,6 +8,10 @@ import 'src/core/themes.dart';
 import 'src/features/onboard/data/onboard_repository.dart';
 import 'src/features/internet/bloc/internet_bloc.dart';
 import 'src/features/home/bloc/home_bloc.dart';
+import 'src/features/settings/bloc/settings_bloc.dart';
+import 'src/features/settings/data/settings_repository.dart';
+import 'src/features/vip/bloc/vip_bloc.dart';
+import 'src/features/vip/data/vip_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +29,26 @@ void main() async {
         RepositoryProvider<OnboardRepository>(
           create: (context) => OnboardRepositoryImpl(prefs: prefs),
         ),
+        RepositoryProvider<SettingsRepository>(
+          create: (context) => SettingsRepositoryImpl(prefs: prefs),
+        ),
+        RepositoryProvider<VipRepository>(
+          create: (context) => VipRepositoryImpl(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => HomeBloc()),
+          BlocProvider(
+            create: (context) => SettingsBloc(
+              repository: context.read<SettingsRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => VipBloc(
+              repository: context.read<VipRepository>(),
+            ),
+          ),
           BlocProvider(
             create: (context) => InternetBloc()..add(CheckInternet()),
           ),
