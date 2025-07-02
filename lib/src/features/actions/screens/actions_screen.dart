@@ -1,6 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart' hide PdfDocument;
+import 'package:pdf/widgets.dart' as pw;
 import 'package:share_plus/share_plus.dart';
+import 'package:docx_to_text/docx_to_text.dart';
+import 'package:pdf_render/pdf_render.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/utils.dart';
@@ -33,6 +40,108 @@ class ActionsScreen extends StatelessWidget {
     }
 
     void onBrowse() {}
+
+    void onImageToPdf() async {
+      final images = await pickImages();
+      final pdf = pw.Document();
+      for (final image in images) {
+        final imageBytes = await image.readAsBytes();
+        final imageWidget = pw.MemoryImage(imageBytes);
+        pdf.addPage(
+          pw.Page(
+            margin: pw.EdgeInsets.zero,
+            pageFormat: PdfPageFormat.a4,
+            build: (pw.Context context) {
+              return pw.Center(
+                child: pw.Image(
+                  imageWidget,
+                  fit: pw.BoxFit.contain,
+                ),
+              );
+            },
+          ),
+        );
+      }
+      final file = await createFile(
+        filename: 'images',
+        format: 'pdf',
+      );
+      await file.writeAsBytes(await pdf.save());
+      shareFiles([file]);
+    }
+
+    void onPdfToImage() async {
+      final picked = await pickFile(allowedExtensions: ['pdf']);
+      List<File> files = [];
+      if (picked != null) {
+        final doc = await PdfDocument.openFile(picked.path);
+        final pageCount = doc.pageCount;
+        for (int i = 1; i <= pageCount; i++) {
+          final page = await doc.getPage(i);
+          final pageImage = await page.render(
+            width: page.width.toInt(),
+            height: page.height.toInt(),
+          );
+          final imageBytes = pageImage.pixels;
+          final dir = await getTemporaryDirectory();
+          final file = File('${dir.path}/page_$i.png');
+          await file.writeAsBytes(imageBytes);
+          files.add(file);
+        }
+        await doc.dispose();
+        shareFiles(files);
+      }
+    }
+
+    void onPdfToText() {}
+
+    void onTextToPdf() async {
+      await pickFile(allowedExtensions: ['txt']).then(
+        (value) async {
+          if (value != null) {
+            final textContent = await value.readAsString();
+            final pdf = pw.Document();
+            final paragraphs = textContent.split('\n');
+            pdf.addPage(
+              pw.MultiPage(
+                build: (pw.Context context) => paragraphs
+                    .map(
+                      (para) => pw.Text(
+                        para,
+                        style: const pw.TextStyle(fontSize: 12),
+                      ),
+                    )
+                    .toList(),
+              ),
+            );
+            final file = await createFile(
+              filename: 'converted',
+              format: 'pdf',
+            );
+            await file.writeAsBytes(await pdf.save());
+            shareFiles([file]);
+          }
+        },
+      );
+    }
+
+    void onDocxToText() async {
+      await pickFile(allowedExtensions: [
+        'DOC',
+        'DOCX',
+      ]).then((value) async {
+        if (value != null && context.mounted) {
+          final bytes = await value.readAsBytes();
+          final text = docxToText(bytes);
+          final file = await createFile(
+            filename: 'converted_text',
+            format: 'txt',
+          );
+          await file.writeAsString(text);
+          shareFiles([file]);
+        }
+      });
+    }
 
     return ListView(
       padding: const EdgeInsets.all(26),
@@ -119,25 +228,31 @@ class ActionsScreen extends StatelessWidget {
               title: 'Image to PDF',
               format1: Assets.format1,
               format2: Assets.format2,
-              onPressed: () {},
+              onPressed: onImageToPdf,
             ),
             ActionFormat(
               title: 'PDF to Image',
               format1: Assets.format2,
               format2: Assets.format1,
-              onPressed: () {},
+              onPressed: onPdfToImage,
             ),
             ActionFormat(
               title: 'PDF to Text',
               format1: Assets.format2,
               format2: Assets.format3,
-              onPressed: () {},
+              onPressed: onPdfToText,
             ),
             ActionFormat(
               title: 'Text to PDF',
               format1: Assets.format3,
               format2: Assets.format2,
-              onPressed: () {},
+              onPressed: onTextToPdf,
+            ),
+            ActionFormat(
+              title: 'Docx to Text',
+              format1: Assets.format4,
+              format2: Assets.format3,
+              onPressed: onDocxToText,
             ),
           ],
         ),

@@ -27,6 +27,7 @@ abstract final class Assets {
   static const format1 = 'assets/format1.svg';
   static const format2 = 'assets/format2.svg';
   static const format3 = 'assets/format3.svg';
+  static const format4 = 'assets/format4.svg';
   static const onboard1 = 'assets/onboard1.png';
   static const onboard2 = 'assets/onboard2.png';
   static const onboard3 = 'assets/onboard3.png';
