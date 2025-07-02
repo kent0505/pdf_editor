@@ -28,9 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(
-              bottom: 62 + MediaQuery.of(context).viewPadding.bottom,
-            ),
+            padding: const EdgeInsets.only(bottom: 72),
             child: BlocConsumer<HomeBloc, HomeState>(
               listener: (context, state) {
                 logger(state.runtimeType);
