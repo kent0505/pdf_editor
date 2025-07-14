@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
+import 'src/features/actions/bloc/actions_bloc.dart';
 import 'src/features/onboard/data/onboard_repository.dart';
 import 'src/features/home/bloc/home_bloc.dart';
 import 'src/features/settings/bloc/settings_bloc.dart';
@@ -38,6 +39,7 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => HomeBloc()),
+          BlocProvider(create: (context) => ActionsBloc()),
           BlocProvider(
             create: (context) => SettingsBloc(
               repository: context.read<SettingsRepository>(),

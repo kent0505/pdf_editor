@@ -24,6 +24,7 @@ abstract final class Assets {
   static const app1 = 'assets/app1.png';
   static const app2 = 'assets/app2.png';
   static const back = 'assets/back.svg';
+  static const camera = 'assets/camera.svg';
   static const format1 = 'assets/format1.svg';
   static const format2 = 'assets/format2.svg';
   static const format3 = 'assets/format3.svg';
@@ -59,6 +60,14 @@ abstract final class Keys {
   static const onboard = 'onboard';
   static const faceID = 'faceID';
 }
+
+abstract final class FileExtensions {
+  static const pdf = 'pdf';
+  static const txt = 'txt';
+  static const doc = 'doc';
+  static const docx = 'docx';
+}
+ 
 
 /* 
 abstract interface class OnboardRepository {

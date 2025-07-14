@@ -38,6 +38,15 @@ class ImageWidget extends StatelessWidget {
     );
   }
 
+  static Widget errorBuilder(
+    BuildContext context,
+    Object error,
+    StackTrace? stackTrace,
+  ) {
+    logger(error);
+    return SizedBox();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -48,17 +57,10 @@ class ImageWidget extends StatelessWidget {
         height: height,
         fit: fit,
         alignment: alignment,
-        frameBuilder: frameBuilder,
         cacheWidth: cacheWidth,
         cacheHeight: cacheHeight,
-        errorBuilder: (context, error, stackTrace) {
-          logger(error);
-
-          return SizedBox(
-            width: width,
-            height: height,
-          );
-        },
+        frameBuilder: frameBuilder,
+        errorBuilder: errorBuilder,
       ),
     );
   }

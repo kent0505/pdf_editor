@@ -5,6 +5,9 @@ import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,10 +15,15 @@ import 'package:url_launcher/url_launcher.dart';
 
 void logger(Object message) => developer.log(message.toString());
 
-void printPDF() async {
-  // await Printing.layoutPdf(
-  //   onLayout: (PdfPageFormat format) async => doc.save(),
-  // );
+void printPDF(Document pdf) async {
+  try {
+    Printing.layoutPdf(
+      format: PdfPageFormat.a4,
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+    );
+  } catch (e) {
+    logger(e);
+  }
 }
 
 void shareFiles(List<File> files) async {
@@ -43,7 +51,7 @@ void launchURL(String uri) async {
   }
 }
 
-Future<File?> pickFile({List<String> allowedExtensions = const ['pdf']}) async {
+Future<File?> pickFile(List<String> allowedExtensions) async {
   try {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -60,7 +68,7 @@ Future<File?> pickFile({List<String> allowedExtensions = const ['pdf']}) async {
 
 Future<List<XFile>> pickImages() async {
   try {
-    final photos = await ImagePicker().pickMultiImage();
+    final photos = await ImagePicker().pickMultiImage(limit: 100);
     return photos;
   } catch (e) {
     logger(e);
