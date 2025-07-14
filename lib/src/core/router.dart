@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../features/actions/screens/camera_preview_screen.dart';
 import '../features/actions/screens/camera_screen.dart';
 import '../features/actions/screens/converter_screen.dart';
+import '../features/actions/screens/pdf_screen.dart';
 import '../features/actions/screens/read_screen.dart';
 import '../features/actions/screens/scanned_screen.dart';
 import '../features/home/screens/home_screen.dart';
@@ -55,6 +56,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: ConverterScreen.routePath,
       builder: (context, state) => const ConverterScreen(),
+    ),
+    GoRoute(
+      path: PdfScreen.routePath,
+      builder: (context, state) => const PdfScreen(),
     ),
 
     // settings
