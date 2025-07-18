@@ -10,7 +10,7 @@ class FaqScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Appbar(title: 'FAQ'),
+      appBar: const ScaffoldSliverAppBar(title: 'FAQ'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [],

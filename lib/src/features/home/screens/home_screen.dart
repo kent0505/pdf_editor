@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/utils.dart';
 import '../../actions/screens/actions_screen.dart';
 import '../../favourites/screens/favourites_screen.dart';
-import '../../files/screens/files_screen.dart';
+import '../../files/ui/screens/files_screen.dart';
 import '../../settings/screens/settings_screen.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/nav_bar.dart';

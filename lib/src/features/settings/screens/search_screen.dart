@@ -10,7 +10,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Appbar(title: 'Search'),
+      appBar: const ScaffoldSliverAppBar(title: 'Search'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [],

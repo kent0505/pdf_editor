@@ -46,22 +46,42 @@ class _SplashScreenState extends State<SplashScreen> {
             },
           );
         }
+
+        if(!state.loading){
+          context.go(HomeScreen.routePath);
+        }
       },
       builder: (context, state) {
         return Scaffold(
           body: state.loading
               ? const LoadingWidget()
               : Center(
-                  child: Button(
-                    onPressed: check,
-                    child: const Text(
-                      'Retry',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontFamily: AppFonts.w600,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                        onPressed: check,
+                        child: const Text(
+                          'Retry',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: AppFonts.w600,
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 10),
+                      Button(
+                          onPressed: () => context.go(HomeScreen.routePath),
+                          child: const Text(
+                            'Go to home page',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontFamily: AppFonts.w600,
+                            ),
+                          ))
+                    ],
                   ),
                 ),
         );

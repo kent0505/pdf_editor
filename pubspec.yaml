@@ -30,11 +30,14 @@ dependencies:
   docx_to_text: ^1.0.1 # docx to text
   pdf: ^3.11.3
   screenshot: ^3.0.0
+  nextgen_pdf_editor:
+    path: ./packages/nextgen_pdf_editor
   # qr_code_scanner: ^1.0.1
   # pdf_render: ^1.4.12
   # pdf_combiner: ^4.3.5 # image to pdf | pdf to images | combine pdfs
   purchases_flutter: ^8.10.2
   purchases_ui_flutter: ^8.10.2
+  pdf_render: ^1.4.12
   #
 dev_dependencies:
   flutter_test:
