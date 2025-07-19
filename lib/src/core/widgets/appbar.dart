@@ -66,13 +66,12 @@ class ScaffoldSliverAppBar extends StatelessWidget
     final actionsIsNotNull = actions != null;
     return AppBar(
       backgroundColor: const Color(0xffF2F2F7),
+      centerTitle: false,
       titleTextStyle: const TextStyle(
         color: Colors.black,
         fontSize: 28,
         fontFamily: AppFonts.w700,
       ),
-    
-      centerTitle: false,
       title: actionsIsNotNull ? null : Text(title),
       actions: actions,
       bottom: actionsIsNotNull
@@ -106,7 +105,11 @@ class _BottomAppBarTitle extends StatelessWidget
         child: Text(
           title,
           textAlign: TextAlign.left,
-          style: Theme.of(context).appBarTheme.titleTextStyle,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 28,
+            fontFamily: AppFonts.w700,
+          ),
         ),
       ),
     );
